@@ -1,0 +1,42 @@
+server:
+  port: 9094
+
+
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  cloud:
+    gateway:
+      routes:
+        - id: CANDIDATE-SERVICE
+          uri: lb://CANDIDATE-SERVICE
+          predicates:
+            - Path=/CandidateService/**
+        - id: QUESTION-SERVICE
+          uri: lb://QUESTION-SERVICE
+          predicates:
+            - Path=/Question-Services/**
+        - id: ANSWER-SERVICE
+          uri: lb://ANSWER-SERVICE
+          predicates:
+            - Path=/Answer-Service/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+okta:
+  oauth2:
+    issuer: https://dev-38495194.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oa8p2kb4eoaBBO1I5d7
+    client-secret: tIQoCSP92giMsOhFm4toR25RV6qalPjlTh8X6Uc_
+    scopes: openid,email,profile,offline_access

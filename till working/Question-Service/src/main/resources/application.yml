@@ -1,0 +1,11 @@
+server:
+  port: 9092
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Question-service
+    username: postgres
+    password: admin123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
